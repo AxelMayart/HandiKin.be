@@ -236,10 +236,10 @@ section:nth-of-type(even) { background: var(--fond-clair); }
   padding: clamp(4rem, 11vw, 8rem) 0 clamp(3.5rem, 9vw, 6.5rem);
   color: #fff;
   background-color: var(--bleu-nuit);
-  /* Remplacer par votre photo : images/hero.jpg (paysage, ~2000 px de large) */
+  /* Remplacer par votre photo : hero.jpg (paysage, ~2000 px de large) */
   background-image:
     linear-gradient(115deg, rgba(6, 64, 92, .95) 0%, rgba(6, 64, 92, .88) 45%, rgba(10, 110, 153, .82) 100%),
-    url("images/hero.jpg");
+    url("hero.jpg");
   background-size: cover;
   background-position: center;
 }
