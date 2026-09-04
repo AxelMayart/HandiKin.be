@@ -1,0 +1,462 @@
+/* ==========================================================================
+   HandiKin ASBL — feuille de style
+   Palette dérivée du logo : bleu, noir, ambre, jaune, rouge.
+   Modifier les variables ci-dessous suffit à changer toute l'identité du site.
+   ========================================================================== */
+
+:root {
+  /* --- Couleurs du logo, telles quelles --------------------------------- */
+  --logo-bleu:  #04A0E1;
+  --logo-noir:  #111111;
+  --logo-ambre: #FECA13;
+  --logo-jaune: #FBF116;
+  --logo-rouge: #EF481E;
+
+  /* --- Déclinaisons lisibles (contrastes vérifiés) ----------------------- */
+  /* Les teintes vives du logo servent d'aplats et d'accents ; pour le texte
+     et les boutons on utilise ces versions foncées, seules conformes. */
+  --bleu-fonce: #075B80;   /* texte et liens sur fond clair — 7,6:1 */
+  --bleu-nuit:  #06405C;   /* grands aplats sombres */
+  --bleu-doux:  #E3F2F9;   /* fonds légers */
+  --rouge-fonce:#C2350F;   /* boutons d'appel à l'action — 5,6:1 */
+
+  /* --- Neutres ---------------------------------------------------------- */
+  --fond:       #F4F8FB;
+  --fond-clair: #FFFFFF;
+  --encre:      #14181C;
+  --encre-doux: #4A5560;
+  --ligne:      #DCE6ED;
+
+  /* --- Typographie ------------------------------------------------------ */
+  --titre: "Fraunces", Georgia, "Times New Roman", serif;
+  --texte: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+           "Helvetica Neue", Arial, sans-serif;
+
+  /* --- Mesures ---------------------------------------------------------- */
+  --large: 1120px;
+  --etroit: 720px;
+  --rayon: 14px;
+  --ombre: 0 2px 4px rgba(6, 64, 92, .05), 0 12px 28px rgba(6, 64, 92, .09);
+}
+
+/* --------------------------------------------------------------- Réglages */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: var(--texte);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--titre);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -.015em;
+  margin: 0 0 .5em;
+  text-wrap: balance;
+}
+
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.5rem); }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.35rem); }
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--bleu-fonce); text-underline-offset: .18em; }
+a:hover { color: var(--rouge-fonce); }
+
+:focus-visible {
+  outline: 3px solid var(--logo-ambre);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.saut {
+  position: absolute; left: -9999px;
+  background: var(--bleu-nuit); color: #fff;
+  padding: .7rem 1.1rem; border-radius: 0 0 var(--rayon) 0;
+  z-index: 100; text-decoration: none;
+}
+.saut:focus { left: 0; top: 0; }
+
+/* ------------------------------------------------------------- Structures */
+
+.zone { width: min(100% - 2.5rem, var(--large)); margin-inline: auto; }
+.zone--etroite { width: min(100% - 2.5rem, var(--etroit)); margin-inline: auto; }
+
+section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+section:nth-of-type(even) { background: var(--fond-clair); }
+
+.chapeau {
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--bleu-fonce);
+  margin-bottom: .8rem;
+}
+
+.intro {
+  font-size: 1.15rem;
+  color: var(--encre-doux);
+  max-width: 62ch;
+}
+
+/* Filet aux cinq couleurs du logo — rappel de marque */
+.bande {
+  display: flex;
+  height: 5px;
+}
+.bande span { flex: 1; }
+.bande span:nth-child(1) { background: var(--logo-bleu); }
+.bande span:nth-child(2) { background: var(--logo-noir); }
+.bande span:nth-child(3) { background: var(--logo-ambre); }
+.bande span:nth-child(4) { background: var(--logo-jaune); }
+.bande span:nth-child(5) { background: var(--logo-rouge); }
+
+/* ---------------------------------------------------------------- En-tête */
+
+.entete {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, .94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ligne);
+}
+
+.entete__zone {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: .85rem 0;
+}
+
+.marque {
+  display: flex; align-items: center; gap: .7rem;
+  font-family: var(--titre);
+  font-size: 1.4rem; font-weight: 600;
+  color: var(--encre); text-decoration: none;
+  margin-right: auto;
+}
+.marque img { width: 40px; height: 40px; }
+.marque em { font-style: normal; color: var(--bleu-fonce); }
+
+.nav { display: flex; align-items: center; gap: .35rem; flex-wrap: wrap; }
+
+.nav a {
+  color: var(--encre-doux);
+  text-decoration: none;
+  font-size: .93rem; font-weight: 500;
+  padding: .45rem .6rem; border-radius: 8px;
+}
+.nav a:hover { color: var(--bleu-fonce); background: var(--bleu-doux); }
+
+/* Le bouton de don garde son apparence propre à l'intérieur de la navigation */
+.nav a.bouton {
+  color: #fff;
+  background: var(--rouge-fonce);
+  padding: .7rem 1.35rem;
+  border-radius: 999px;
+}
+.nav a.bouton:hover { color: #fff; background: #9E2A0B; }
+
+.nav__langue {
+  border: 1px solid var(--ligne);
+  font-weight: 600 !important;
+  color: var(--bleu-fonce) !important;
+}
+
+.bouton {
+  display: inline-block;
+  background: var(--rouge-fonce); color: #fff;
+  padding: .7rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 600; font-size: .95rem;
+  text-decoration: none;
+  border: 1px solid var(--rouge-fonce);
+  transition: background .18s ease, transform .18s ease;
+}
+.bouton:hover { background: #9E2A0B; border-color: #9E2A0B; color: #fff; transform: translateY(-1px); }
+
+.bouton--clair {
+  background: #fff; color: var(--bleu-nuit); border-color: #fff;
+}
+.bouton--clair:hover { background: var(--logo-ambre); border-color: var(--logo-ambre); color: var(--encre); }
+
+.bouton--contour {
+  background: transparent; color: #fff;
+  border-color: rgba(255, 255, 255, .6);
+}
+.bouton--contour:hover { background: rgba(255, 255, 255, .14); border-color: #fff; color: #fff; }
+
+/* Bouton menu, visible sur petit écran uniquement */
+.menu-bascule {
+  display: none;
+  background: none; border: 1px solid var(--ligne);
+  border-radius: 8px; padding: .45rem .7rem;
+  font: inherit; font-size: .9rem; font-weight: 600;
+  color: var(--encre); cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .menu-bascule { display: block; margin-left: auto; }
+  .marque { margin-right: 0; }
+  .nav {
+    display: none;
+    width: 100%; flex-direction: column; align-items: stretch;
+    gap: 0; padding-bottom: .6rem;
+  }
+  .nav[data-ouvert="true"] { display: flex; }
+  .nav a { padding: .7rem .5rem; border-bottom: 1px solid var(--ligne); border-radius: 0; }
+  .nav .bouton, .nav .nav__langue { margin-top: .6rem; text-align: center; border-radius: 999px; }
+  .entete__zone { flex-wrap: wrap; }
+}
+
+/* ------------------------------------------------------------------- Hero */
+
+.hero {
+  position: relative;
+  padding: clamp(4rem, 11vw, 8rem) 0 clamp(3.5rem, 9vw, 6.5rem);
+  color: #fff;
+  background-color: var(--bleu-nuit);
+  /* Remplacer par votre photo : images/hero.jpg (paysage, ~2000 px de large) */
+  background-image:
+    linear-gradient(115deg, rgba(6, 64, 92, .95) 0%, rgba(6, 64, 92, .88) 45%, rgba(10, 110, 153, .82) 100%),
+    url("images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero h1 { color: #fff; max-width: 16ch; }
+.hero__texte { max-width: 54ch; font-size: 1.2rem; color: rgba(255, 255, 255, .94); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+
+/* --------------------------------------------------------------- Chiffres */
+
+.chiffres {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--ligne);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  overflow: hidden;
+  margin-top: -3.2rem;
+  position: relative; z-index: 2;
+  box-shadow: var(--ombre);
+}
+
+.chiffre { background: var(--fond-clair); padding: 1.6rem 1.4rem; }
+.chiffre b {
+  display: block;
+  font-family: var(--titre);
+  font-size: 2.15rem; font-weight: 600;
+  color: var(--bleu-fonce); line-height: 1.1;
+}
+.chiffre span { font-size: .92rem; color: var(--encre-doux); }
+
+/* ----------------------------------------------------------------- Cartes */
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2.6rem;
+}
+
+/* Variante à quatre colonnes sur grand écran (section Projets) */
+.grille--quatre { grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); }
+
+.carte {
+  background: var(--fond-clair);
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  padding: 1.7rem;
+}
+section:nth-of-type(even) .carte { background: var(--fond); }
+
+.carte h3 { color: var(--bleu-fonce); margin-bottom: .4rem; }
+.carte p { font-size: .98rem; color: var(--encre-doux); }
+
+/* Les pastilles numérotées reprennent les couleurs du logo, dans l'ordre */
+.carte__numero {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; margin-bottom: .9rem;
+  border-radius: 8px;
+  background: var(--logo-bleu); color: #fff;
+  font-weight: 700; font-size: .95rem;
+}
+.carte:nth-child(2) .carte__numero { background: var(--logo-ambre); color: var(--encre); }
+.carte:nth-child(3) .carte__numero { background: var(--logo-rouge); color: #fff; }
+
+/* Liste à puces personnalisée */
+.liste { list-style: none; padding: 0; margin: 1.6rem 0 0; }
+.liste li {
+  position: relative;
+  padding-left: 1.9rem;
+  margin-bottom: .85rem;
+  color: var(--encre-doux);
+}
+.liste li::before {
+  content: "";
+  position: absolute; left: 0; top: .58em;
+  width: 10px; height: 10px; border-radius: 2px;
+  background: var(--logo-bleu);
+}
+.liste li:nth-child(2)::before { background: var(--logo-noir); }
+.liste li:nth-child(3)::before { background: var(--logo-ambre); }
+.liste li:nth-child(4)::before { background: var(--logo-jaune); }
+.liste li:nth-child(5)::before { background: var(--logo-rouge); }
+.liste strong { color: var(--encre); }
+
+/* ------------------------------------------------------------------ Duo   */
+
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+@media (max-width: 820px) { .duo { grid-template-columns: 1fr; } }
+
+.encadre {
+  background: var(--bleu-nuit);
+  color: rgba(255, 255, 255, .93);
+  border-radius: var(--rayon);
+  border-top: 5px solid var(--logo-ambre);
+  padding: 1.9rem;
+}
+.encadre h3 { color: #fff; }
+.encadre a { color: var(--logo-ambre); }
+
+/* ----------------------------------------------------------------- Équipe */
+
+.equipe {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.2rem;
+  margin-top: 2.6rem;
+}
+
+.membre {
+  background: var(--fond-clair);
+  border: 1px solid var(--ligne);
+  border-left: 4px solid var(--logo-bleu);
+  border-radius: 10px;
+  padding: 1.25rem 1.4rem;
+}
+section:nth-of-type(even) .membre { background: var(--fond); }
+.membre:nth-child(2) { border-left-color: var(--logo-noir); }
+.membre:nth-child(3) { border-left-color: var(--logo-ambre); }
+.membre:nth-child(4) { border-left-color: var(--logo-jaune); }
+.membre:nth-child(5) { border-left-color: var(--logo-rouge); }
+.membre:nth-child(6) { border-left-color: var(--logo-bleu); }
+
+.membre b { display: block; font-size: 1.02rem; }
+.membre .role { display: block; color: var(--bleu-fonce); font-size: .9rem; font-weight: 600; }
+.membre .bio { display: block; color: var(--encre-doux); font-size: .88rem; margin-top: .25rem; }
+
+/* ------------------------------------------------------------ Partenaires */
+
+.partenaires {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2.4rem;
+}
+
+.partenaire {
+  background: #fff;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon);
+  padding: 1.5rem;
+  text-align: center;
+}
+.partenaire__logo {
+  height: 74px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: .9rem;
+}
+.partenaire__logo img { max-height: 74px; width: auto; }
+.partenaire b { display: block; }
+.partenaire span { font-size: .88rem; color: var(--encre-doux); }
+
+/* ------------------------------------------------------------------- Dons */
+
+.dons { background: var(--bleu-nuit) !important; color: rgba(255, 255, 255, .93); }
+.dons h2 { color: #fff; }
+.dons .chapeau { color: var(--logo-ambre); }
+.dons .intro { color: rgba(255, 255, 255, .9); }
+.dons .liste li { color: rgba(255, 255, 255, .9); }
+.dons .liste strong { color: #fff; }
+.dons a { color: var(--logo-ambre); }
+/* Sur fond bleu nuit, la puce noire du logo devient blanche pour rester visible */
+.dons .liste li:nth-child(2)::before { background: #fff; }
+
+.compte {
+  background: rgba(255, 255, 255, .09);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-top: 5px solid var(--logo-rouge);
+  border-radius: var(--rayon);
+  padding: 1.6rem;
+}
+.compte dt {
+  font-size: .76rem; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--logo-ambre); margin-bottom: .15rem;
+}
+.compte dd {
+  margin: 0 0 1rem;
+  font-size: 1.12rem; font-weight: 600; color: #fff;
+}
+.compte dd:last-child { margin-bottom: 0; }
+.compte .iban { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; letter-spacing: .04em; }
+
+/* ---------------------------------------------------------------- Contact */
+
+.contact-blocs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2.4rem;
+}
+
+/* ------------------------------------------------------------------- Pied */
+
+.pied {
+  background: var(--logo-noir);
+  color: rgba(255, 255, 255, .72);
+  padding: 3rem 0 2rem;
+  font-size: .9rem;
+}
+.pied a { color: rgba(255, 255, 255, .88); }
+.pied h3 { color: #fff; font-size: 1.05rem; }
+
+.pied__grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+}
+
+.pied__legal {
+  margin-top: 2.4rem; padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, .16);
+  font-size: .82rem;
+  color: rgba(255, 255, 255, .62);
+}
